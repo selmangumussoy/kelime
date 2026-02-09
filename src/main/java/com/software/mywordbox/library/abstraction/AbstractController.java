@@ -28,7 +28,7 @@ public abstract class AbstractController<D, Req, Res> extends BaseController {
         return respond(mapper.toResponse(service.getById(id)));
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public Response<Res> create(@RequestBody @Valid Req request) {
         D dto = service.create(mapper.requestToDto(request));
         return respond(mapper.toResponse(dto));
