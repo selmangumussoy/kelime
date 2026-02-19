@@ -13,7 +13,6 @@ public class AuthMapper {
                 .password(signUpRequest.getPassword())
                 .firstName(signUpRequest.getFirstName())
                 .lastName(signUpRequest.getLastName())
-                .phoneNumber(signUpRequest.getPhoneNumber())
                 .school(signUpRequest.getSchool())
                 .targetLanguage(signUpRequest.getTargetLanguage())
                 .age(signUpRequest.getAge())

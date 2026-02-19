@@ -11,7 +11,6 @@ public class UserMapper {
         user.setEmailAddress(dto.getEmailAddress());
         user.setFirstName(dto.getFirstName());
         user.setLastName(dto.getLastName());
-        user.setPhoneNumber(dto.getPhoneNumber());
         user.setSchool(dto.getSchool());
         user.setTargetLanguage(dto.getTargetLanguage());
         user.setAge(dto.getAge());
@@ -25,7 +24,6 @@ public class UserMapper {
         user.setEmailAddress(dto.getEmailAddress());
         user.setFirstName(dto.getFirstName());
         user.setLastName(dto.getLastName());
-        user.setPhoneNumber(dto.getPhoneNumber());
         user.setSchool(dto.getSchool());
         user.setTargetLanguage(dto.getTargetLanguage());
         user.setAge(dto.getAge());
@@ -43,7 +41,6 @@ public class UserMapper {
                 .emailAddress(user.getEmailAddress())
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
-                .phoneNumber(user.getPhoneNumber())
                 .school(user.getSchool())
                 .targetLanguage(user.getTargetLanguage())
                 .age(user.getAge())

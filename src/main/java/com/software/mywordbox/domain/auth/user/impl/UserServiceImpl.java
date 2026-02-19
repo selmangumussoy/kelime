@@ -20,16 +20,10 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     public User save(User user) {
-        user.setPhoneNumber(formatPhoneNumber(user.getPhoneNumber()));
         User saved = repository.save(user);
         return saved;
     }
 
-
-    private String formatPhoneNumber(String phoneNumber) {
-        return "90" + phoneNumber;
-
-    }
 
     @Override
     public UserDto getById(String id) {
@@ -67,7 +61,6 @@ public class UserServiceImpl implements UserService {
 
         user.setFirstName(updateDto.getFirstName());
         user.setLastName(updateDto.getLastName());
-        user.setPhoneNumber(formatPhoneNumber(updateDto.getPhoneNumber()));
         user.setSchool(updateDto.getSchool());
         user.setTargetLanguage(updateDto.getTargetLanguage());
         user.setAge(updateDto.getAge());

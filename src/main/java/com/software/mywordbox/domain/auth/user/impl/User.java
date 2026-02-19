@@ -16,7 +16,6 @@ public class User extends AbstractEntity {
     private static final String COL_MAIL_ADDRESS = "email_address";
     private static final String COL_FIRST_NAME = "first_name";
     private static final String COL_LAST_NAME = "last_name";
-    private static final String COL_PHONE_NUMBER = "phone_number";
     private static final String COL_SCHOOL = "school";
     private static final String COL_TARGET_LANGUAGE = "target_language";
     private static final String COL_AGE = "age";
@@ -33,9 +32,6 @@ public class User extends AbstractEntity {
 
     @Column(name = COL_LAST_NAME)
     private String lastName;
-
-    @Column(name = COL_PHONE_NUMBER)
-    private String phoneNumber;
 
     @Column(name = COL_SCHOOL)
     private String school;

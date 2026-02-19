@@ -11,7 +11,6 @@ public class UserMapper {
                 .emailAddress(userDto.getEmailAddress())
                 .firstName(userDto.getFirstName())
                 .lastName(userDto.getLastName())
-                .phoneNumber(userDto.getPhoneNumber())
                 .school(userDto.getSchool())
                 .targetLanguage(userDto.getTargetLanguage())
                 .age(userDto.getAge())
