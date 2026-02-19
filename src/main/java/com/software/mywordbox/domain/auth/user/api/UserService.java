@@ -10,4 +10,5 @@ public interface UserService {
     UserDto getById(String id);
     UserDto getMe();
     List<UserDto> getAll();
+    UserDto update(String id, UserUpdateDto updateDto);
 }

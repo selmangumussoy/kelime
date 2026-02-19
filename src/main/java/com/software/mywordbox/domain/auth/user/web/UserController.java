@@ -3,9 +3,11 @@ package com.software.mywordbox.domain.auth.user.web;
 
 import com.software.mywordbox.domain.auth.user.api.UserMapper;
 import com.software.mywordbox.domain.auth.user.api.UserService;
+import com.software.mywordbox.domain.auth.user.api.UserUpdateDto;
 import com.software.mywordbox.library.rest.BaseController;
 import com.software.mywordbox.library.rest.DataResponse;
 import com.software.mywordbox.library.rest.Response;
+import com.software.mywordbox.library.security.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,7 +41,14 @@ public class UserController extends BaseController {
 
 
 
+    @PutMapping("/{id}")
+    public Response<UserResponse> update(@PathVariable String id, @RequestBody UserUpdateDto updateDto) {
+        return respond(UserMapper.toResponse(service.update(id, updateDto)));
+    }
 
-
-
+    @PutMapping("/me")
+    public Response<UserResponse> updateMe(@RequestBody UserUpdateDto updateDto) {
+        String currentUserId = JwtUtil.extractUserIdAndIfAnonymousThrow();
+        return respond(UserMapper.toResponse(service.update(currentUserId, updateDto)));
+    }
 }

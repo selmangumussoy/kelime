@@ -3,13 +3,12 @@ package com.software.mywordbox.domain.auth.user.impl;
 
 import com.software.mywordbox.domain.auth.user.api.UserDto;
 import com.software.mywordbox.domain.auth.user.api.UserService;
+import com.software.mywordbox.domain.auth.user.api.UserUpdateDto;
 import com.software.mywordbox.library.security.JwtUtil;
-import com.software.mywordbox.library.utils.Functions;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,7 +17,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepository repository;
-    private final PasswordEncoder passwordEncoder;
 
     @Transactional
     public User save(User user) {
@@ -27,13 +25,6 @@ public class UserServiceImpl implements UserService {
         return saved;
     }
 
-//    public UserDto save(UserDto userDto) {
-//        String password = StringUtils.hasLength(userDto.getPassword())
-//                ? userDto.getPassword()
-//                : Functions.generateRandomPassword();
-//        userDto.setPassword(passwordEncoder.encode(password));
-//        return UserMapper.toDto(repository.save(UserMapper.toEntityForUser(userDto)));
-//    }
 
     private String formatPhoneNumber(String phoneNumber) {
         return "90" + phoneNumber;
@@ -51,13 +42,6 @@ public class UserServiceImpl implements UserService {
         return getById(JwtUtil.extractUserIdAndIfAnonymousThrow());
     }
 
-
-
-//    public Optional<User> findByUserNameAndRole(String username, Role role) {
-//        return repository.findByUserNameAndRole(username,role);
-//
-//    }
-
     @Override
     public List<UserDto> getAll() {
         return repository.findAll()
@@ -73,5 +57,22 @@ public class UserServiceImpl implements UserService {
         return repository.findByEmailAddress(emailAddress);
     }
 
+    // UserServiceImpl.java içine eklenecek
+
+    @Override
+    @Transactional
+    public UserDto update(String id, UserUpdateDto updateDto) {
+        User user = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        user.setFirstName(updateDto.getFirstName());
+        user.setLastName(updateDto.getLastName());
+        user.setPhoneNumber(formatPhoneNumber(updateDto.getPhoneNumber()));
+        user.setSchool(updateDto.getSchool());
+        user.setTargetLanguage(updateDto.getTargetLanguage());
+        user.setAge(updateDto.getAge());
+
+        return UserMapper.toDto(repository.save(user));
+    }
 
 }
