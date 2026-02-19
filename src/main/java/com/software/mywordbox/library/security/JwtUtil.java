@@ -23,13 +23,8 @@ public class JwtUtil {
     private String SECRET_KEY ;
     public static final String UNKNOWN_USER = "unknown";
     private static final String ROLE = "role";
-//    private static final long JWT_EXPIRATION = 1000 * 60 * 20;
-//    private static final long ALLOWED_CLOCK_SKEW_SECONDS = 30 * 24 * 60 * 60L;
-
-    private static final long JWT_EXPIRATION = 1000 * 30;
-
-    // BU ÇOK ÖNEMLİ: Tolerans süresini 0 yapıyoruz ki 31. saniyede hata fırlatsın.
-    private static final long ALLOWED_CLOCK_SKEW_SECONDS = 0;
+    private static final long JWT_EXPIRATION = 1000 * 60 * 20;
+    private static final long ALLOWED_CLOCK_SKEW_SECONDS = 30 * 24 * 60 * 60L;
 
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
