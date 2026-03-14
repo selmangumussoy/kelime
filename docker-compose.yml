@@ -6,20 +6,36 @@ services:
     container_name: mywordbox
     restart: always
     environment:
-      # Veritabanı adını burada set ediyoruz
-      - POSTGRES_DB=mywordbox
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+      POSTGRES_DB: mywordbox
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: $DB_PASSWORD
     ports:
-      - "5443:5443"
+      - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      # Healthcheck'i de yeni veritabanı adıyla güncelledik
       test: ["CMD-SHELL", "pg_isready -d mywordbox -U postgres"]
       interval: 10s
       timeout: 5s
       retries: 5
+    networks:
+      - mywordbox_network
+
+  springboot:
+    build: .
+    container_name: mywordbox-api
+    restart: always
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/mywordbox
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: $DB_PASSWORD
+      SPRING_PROFILES_ACTIVE: prod
+      JWT_SECRET_KEY: $JWT_SECRET_KEY
+    ports:
+      - "8080:8080"
     networks:
       - mywordbox_network
 
