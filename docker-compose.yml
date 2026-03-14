@@ -1,30 +1,32 @@
 version: '3.8'
 
 services:
-  postgres:
+  db:
     image: postgres:15-alpine
-    container_name: my-word-box-postgres
+    container_name: mywordbox
     restart: always
     environment:
-      POSTGRES_DB: mywordbox
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      # Veritabanı adını burada set ediyoruz
+      - POSTGRES_DB=mywordbox
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      # Healthcheck'i de yeni veritabanı adıyla güncelledik
+      test: ["CMD-SHELL", "pg_isready -d mywordbox -U postgres"]
       interval: 10s
       timeout: 5s
       retries: 5
     networks:
-      - word-box-network
+      - mywordbox_network
 
 volumes:
   postgres_data:
     driver: local
 
 networks:
-  word-box-network:
+  mywordbox_network:
     driver: bridge
