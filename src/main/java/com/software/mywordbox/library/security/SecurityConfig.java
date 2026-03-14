@@ -83,7 +83,7 @@ public class SecurityConfig{
         CorsConfiguration configuration = new CorsConfiguration();
 
         // Değişiklik: İsteği gönderen port (Frontend) 3000'dir.
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3050"));
+        configuration.setAllowedOrigins(Arrays.asList("https://mywordbox.com"));
 
         // Tüm standart metodlara izin ver
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
