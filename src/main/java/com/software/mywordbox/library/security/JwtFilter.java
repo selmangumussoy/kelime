@@ -63,6 +63,7 @@ public class JwtFilter extends OncePerRequestFilter {
         } catch (io.jsonwebtoken.ExpiredJwtException e) {
             sendErrorResponse(response, MessageCodes.TOKEN_EXPIRED);
         } catch (Exception e) {
+            logger.info("token çöktü");
             sendErrorResponse(response, MessageCodes.FAIL);
         }
     }
