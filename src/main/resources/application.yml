@@ -20,4 +20,4 @@ spring:
 
 jwt:
   secret:
-    key: ${WORD_JWT_SECRET_KEY:varsayilan_ve_cok_gizli_en_az_32_karakterlik_key}
+    key: "aZwNpA1RiUbqtuk6CfZsOQ2b9uATdXpZBG3guYbpQ1I="
