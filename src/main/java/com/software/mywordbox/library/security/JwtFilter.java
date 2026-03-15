@@ -36,6 +36,7 @@ public class JwtFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
         try {
             logger.info("istek düştü");
+            logger.info(request.getRequestURI());
             String authorizationHeader = request.getHeader(AUTHORIZATION);
             if (request.getRequestURI().startsWith("/api/auth/")) {
                 filterChain.doFilter(request, response);
