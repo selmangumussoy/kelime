@@ -37,7 +37,10 @@ public class JwtFilter extends OncePerRequestFilter {
         try {
             logger.info("istek düştü");
             String authorizationHeader = request.getHeader(AUTHORIZATION);
-
+            if (request.getRequestURI().startsWith("/api/auth/")) {
+                filterChain.doFilter(request, response);
+                return;
+            }
             if (authorizationHeader != null && authorizationHeader.startsWith(JWT_BEARER)) {
                 String jwt = authorizationHeader.substring(7);
                 String username = jwtUtil.extractUsername(jwt);
