@@ -35,6 +35,7 @@ public class JwtFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
         try {
+            logger.info("istek düştü");
             String authorizationHeader = request.getHeader(AUTHORIZATION);
 
             if (authorizationHeader != null && authorizationHeader.startsWith(JWT_BEARER)) {

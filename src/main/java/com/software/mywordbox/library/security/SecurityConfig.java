@@ -49,7 +49,7 @@ public class SecurityConfig{
                 .csrf(AbstractHttpConfigurer::disable)
                 .formLogin(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(x -> x
-                        .requestMatchers(mvc.pattern("/auth/**")).permitAll()
+                        .requestMatchers(mvc.pattern("api/auth/**")).permitAll()
                         .anyRequest().permitAll()
                 )
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -83,7 +83,7 @@ public class SecurityConfig{
         CorsConfiguration configuration = new CorsConfiguration();
 
         // Değişiklik: İsteği gönderen port (Frontend) 3000'dir.
-        configuration.setAllowedOrigins(Arrays.asList("https://mywordbox.com"));
+        configuration.setAllowedOrigins(Arrays.asList("https://mywordbox.com","http://localhost:3050"));
 
         // Tüm standart metodlara izin ver
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
