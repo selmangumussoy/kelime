@@ -43,6 +43,7 @@ public class JwtFilter extends OncePerRequestFilter {
                 return;
             }
             if (authorizationHeader != null && authorizationHeader.startsWith(JWT_BEARER)) {
+                logger.info("jwt kontorl");
                 String jwt = authorizationHeader.substring(7);
                 String username = jwtUtil.extractUsername(jwt);
 
