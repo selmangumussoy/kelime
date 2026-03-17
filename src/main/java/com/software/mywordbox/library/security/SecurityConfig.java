@@ -3,6 +3,7 @@ package com.software.mywordbox.library.security;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -49,6 +50,7 @@ public class SecurityConfig{
                 .csrf(AbstractHttpConfigurer::disable)
                 .formLogin(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(x -> x
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll() // bunu ekle
                         .requestMatchers("/api/auth/**").permitAll() // mvc.pattern yerine direkt String dene
                         .anyRequest().authenticated()
                 )

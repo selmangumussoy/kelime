@@ -37,6 +37,7 @@ public class JwtFilter extends OncePerRequestFilter {
         try {
             logger.info("istek düştü");
             logger.info(request.getRequestURI());
+            logger.info(request.getHeader(AUTHORIZATION));
             String authorizationHeader = request.getHeader(AUTHORIZATION);
 
             if (authorizationHeader != null && authorizationHeader.startsWith(JWT_BEARER)) {
