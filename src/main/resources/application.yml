@@ -20,4 +20,4 @@ spring:
 
 jwt:
   secret:
-    key: "uR6p9sBvE5yH8kM2n5p8sBvE5yH8kM2n5p8sBvE5yH8kM2n5p8sBvE5yH8kM2n5"
+    key: ${WORD_JWT_SECRET_KEY} #"uR6p9sBvE5yH8kM2n5p8sBvE5yH8kM2n5p8sBvE5yH8kM2n5p8sBvE5yH8kM2n5"
