@@ -49,7 +49,7 @@ public class SecurityConfig{
                 .csrf(AbstractHttpConfigurer::disable)
                 .formLogin(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(x -> x
-                        .requestMatchers(mvc.pattern("/api/auth/**")).permitAll()
+                        .requestMatchers("/api/auth/**").permitAll() // mvc.pattern yerine direkt String dene
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

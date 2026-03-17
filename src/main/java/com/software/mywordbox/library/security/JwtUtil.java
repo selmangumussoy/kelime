@@ -43,8 +43,8 @@ public class JwtUtil {
     }
 
     private SecretKey getSignKey() {
-        // Base64 decode yerine direkt string kullanımı (daha güvenli)
-        byte[] keyBytes = SECRET_KEY.getBytes(StandardCharsets.UTF_8);
+        // YAML'daki Base64 formatını doğru decode etmelisin
+        byte[] keyBytes = io.jsonwebtoken.io.Decoders.BASE64.decode(SECRET_KEY);
         return Keys.hmacShaKeyFor(keyBytes);
     }
 

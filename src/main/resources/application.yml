@@ -20,4 +20,4 @@ spring:
 
 jwt:
   secret:
-    key: "aZwNpA1RiUbqtuk6CfZsOQ2b9uATdXpZBG3guYbpQ1I="
+    key: "uR6p9sBvE5yH8kM2n5p8sBvE5yH8kM2n5p8sBvE5yH8kM2n5p8sBvE5yH8kM2n5"

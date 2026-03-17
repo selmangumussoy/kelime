@@ -38,10 +38,7 @@ public class JwtFilter extends OncePerRequestFilter {
             logger.info("istek düştü");
             logger.info(request.getRequestURI());
             String authorizationHeader = request.getHeader(AUTHORIZATION);
-            if (request.getRequestURI().startsWith("/api/auth/")) {
-                filterChain.doFilter(request, response);
-                return;
-            }
+
             if (authorizationHeader != null && authorizationHeader.startsWith(JWT_BEARER)) {
                 logger.info("jwt kontorl");
                 String jwt = authorizationHeader.substring(7);
